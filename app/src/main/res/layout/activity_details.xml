@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="movie"
+            type="com.akib.tvshows.models.Movie" />
+
+        <variable
+            name="tvShow"
+            type="com.akib.tvshows.models.TVShow" />
+
+        <variable
+            name="imageURL"
+            type="String" />
+
+        <import type="com.akib.tvshows.utils.BindingHelpers" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.activities_fragment.DetailsActivity">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/slider_images_details_activity"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></androidx.viewpager2.widget.ViewPager2>
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/tv_shows"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/ubuntu_bold_italic"
+            android:text="@{BindingHelpers.selectTitle(tvShow,movie)}"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:text="Venom the last carnage" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/fading_back"
+            app:layout_constraintBottom_toBottomOf="@+id/slider_images_details_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="Action | Drama | Comedy"
+            android:text="@{BindingHelpers.selectGenres(tvShow,movie)}"
+            android:textColor="@color/colorThemeExtra"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@{BindingHelpers.selectRating(tvShow,movie)}"
+            android:textColor="@color/colorThemeExtra"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/textView2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/rating"
+            app:layout_constraintEnd_toStartOf="@+id/rating"
+            app:layout_constraintTop_toTopOf="@+id/rating"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{BindingHelpers.selectOverview(tvShow,movie)}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:text="hey this is a dummy overview in the session of the
+                        the tree to test how will the text look like in the real screen" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3">
+
+            <ImageView
+                android:layout_width="154dp"
+                android:layout_height="215dp"
+                android:contentDescription="@string/tv_shows"
+                android:setPosterImageFromURL="@{BindingHelpers.selectImageURL(tvShow,movie)}" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/slider_indicator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="@{isLoading? View.VISIBLE: View.GONE, default = gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

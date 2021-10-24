@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bools"
+            type="com.akib.tvshows.models.Booleans" />
+
+        <variable
+            name="head"
+            type="com.akib.tvshows.models.Headings" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activities_fragment.ContainerFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/trending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_bold_italic"
+                    android:text="@{head.head1}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/trending"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/trending"
+                    app:layout_constraintTop_toTopOf="@id/trending"
+                    app:layout_constraintVertical_bias="0.9" />
+
+                <LinearLayout
+                    android:id="@+id/cont1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/trending">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/trending_recycler_container_fragment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:visibility="@{bools.rc1? View.VISIBLE: View.GONE, default = gone}">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/top_rated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu_bold_italic"
+                    android:text="@{head.head2}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cont1" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/top_rated"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/top_rated"
+                    app:layout_constraintTop_toTopOf="@id/top_rated"
+                    app:layout_constraintVertical_bias="0.9" />
+
+
+                <LinearLayout
+                    android:id="@+id/cont2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/top_rated">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/top_rated_recycler_container_fragment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:visibility="@{bools.rc2? View.VISIBLE: View.GONE, default = gone}">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/popular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu_bold_italic"
+                    android:text="@{head.head3}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cont2" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/popular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/popular"
+                    app:layout_constraintTop_toTopOf="@id/popular"
+                    app:layout_constraintVertical_bias="0.9" />
+
+
+                <LinearLayout
+                    android:id="@+id/cont3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popular">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/popular_recycler_container_fragment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:visibility="@{bools.rc3? View.VISIBLE: View.GONE, default = gone}">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/head_1_container_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu_bold_italic"
+                    android:text="@{head.head4}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cont3" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/head_1_container_fragment"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/head_1_container_fragment"
+                    app:layout_constraintTop_toTopOf="@id/head_1_container_fragment"
+                    app:layout_constraintVertical_bias="0.9" />
+
+                <LinearLayout
+                    android:id="@+id/cont4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/head_1_container_fragment">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/head_1_recycler_container_fragment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:visibility="@{bools.rc4? View.VISIBLE: View.GONE, default = gone}">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/head_2_container_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu_bold_italic"
+                    android:text="@{head.head5}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cont4" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/head_2_container_fragment"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/head_2_container_fragment"
+                    app:layout_constraintTop_toTopOf="@id/head_2_container_fragment"
+                    app:layout_constraintVertical_bias="0.9" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/head_2_container_fragment">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/head_2_recycler_container_fragment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:visibility="@{bools.rc5? View.VISIBLE: View.GONE, default = gone}">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_layout" />
+                            <include layout="@layout/shimmer_layout" />
+
+                            <include layout="@layout/shimmer_layout" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</layout>
