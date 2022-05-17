@@ -102,8 +102,8 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void loadImageSlider(List<BackDrop> backDrops){
-        if (backDrops.size() >30){
-            backDrops = backDrops.subList(0,30);
+        if (backDrops.size() >25){
+            backDrops = backDrops.subList(0,25);
         }
         detailsBinding.sliderImagesDetailsActivity.setOffscreenPageLimit(1);
         detailsBinding.sliderImagesDetailsActivity.setAdapter(new ImageSliderAdapter(backDrops));
