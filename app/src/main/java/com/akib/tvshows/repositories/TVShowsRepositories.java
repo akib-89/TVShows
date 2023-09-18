@@ -133,8 +133,13 @@ public class TVShowsRepositories {
                 page).enqueue(new Callback<TrendingResponse>() {
             @Override
             public void onResponse(@NonNull Call<TrendingResponse> call, @NonNull Response<TrendingResponse> response) {
-                data.setValue(response.body());
-                Log.d(TAG, "onResponse: " + response.body().toString());
+                if (response.code()==200){
+                    Log.d(TAG, "onResponse: response = " + response.body());
+                    data.setValue(response.body());
+                }else {
+                    Log.d(TAG, "onResponse: code = " + response.code() + " message = " + response.message());
+                    data.setValue(null);
+                }
             }
 
             @Override

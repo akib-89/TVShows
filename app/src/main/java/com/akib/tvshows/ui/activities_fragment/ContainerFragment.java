@@ -144,37 +144,45 @@ public class ContainerFragment extends Fragment implements CardListener {
         containerBinding.getBools().rc4.set(true);
         containerBinding.shimmer5.startShimmer();
         containerBinding.getBools().rc5.set(true);
-        viewModel.getTrendingTVShows("week", 1).observe(getViewLifecycleOwner(), responses -> {
-            adapter1.setShows(responses.getShows());
-            last[0] = responses.getTotalPage();
-            containerBinding.shimmer1.stopShimmer();
-            containerBinding.getBools().rc1.set(false);
-        });
+//        viewModel.getTrendingTVShows("week", 1).observe(getViewLifecycleOwner(), responses -> {
+//            if (responses == null) {
+//                Log.d(TAG, "getMoviesList: null response");
+//                return;
+//            }
+//            adapter1.setShows(responses.getShows());
+//            last[0] = responses.getTotalPage();
+//            containerBinding.shimmer1.stopShimmer();
+//            containerBinding.getBools().rc1.set(false);
+//        });
 
         viewModel.getTopRatedTVShows(1).observe(getViewLifecycleOwner(), responses -> {
+            if (responses == null) {
+                Log.d(TAG, "getTvshow list: null response on top rated tv shows");
+                return;
+            }
             adapter2.setShows(responses.getShows());
             last[1] = responses.getTotalPage();
             containerBinding.shimmer2.stopShimmer();
             containerBinding.getBools().rc2.set(false);
         });
-        viewModel.getPopularTVShows(1).observe(getViewLifecycleOwner(), responses -> {
-            adapter3.setShows(responses.getShows());
-            last[2] = responses.getTotalPage();
-            containerBinding.shimmer3.stopShimmer();
-            containerBinding.getBools().rc3.set(false);
-        });
-        viewModel.getOnAirTVShows(1).observe(getViewLifecycleOwner(), responses -> {
-            adapter4.setShows(responses.getShows());
-            last[3] = responses.getTotalPage();
-            containerBinding.shimmer4.stopShimmer();
-            containerBinding.getBools().rc4.set(false);
-        });
-        viewModel.getTvShowsAiringToday(1).observe(getViewLifecycleOwner(), responses -> {
-            adapter5.setShows(responses.getShows());
-            last[4] = responses.getTotalPage();
-            containerBinding.shimmer5.stopShimmer();
-            containerBinding.getBools().rc5.set(false);
-        });
+//        viewModel.getPopularTVShows(1).observe(getViewLifecycleOwner(), responses -> {
+//            adapter3.setShows(responses.getShows());
+//            last[2] = responses.getTotalPage();
+//            containerBinding.shimmer3.stopShimmer();
+//            containerBinding.getBools().rc3.set(false);
+//        });
+//        viewModel.getOnAirTVShows(1).observe(getViewLifecycleOwner(), responses -> {
+//            adapter4.setShows(responses.getShows());
+//            last[3] = responses.getTotalPage();
+//            containerBinding.shimmer4.stopShimmer();
+//            containerBinding.getBools().rc4.set(false);
+//        });
+//        viewModel.getTvShowsAiringToday(1).observe(getViewLifecycleOwner(), responses -> {
+//            adapter5.setShows(responses.getShows());
+//            last[4] = responses.getTotalPage();
+//            containerBinding.shimmer5.stopShimmer();
+//            containerBinding.getBools().rc5.set(false);
+//        });
     }
 
     private void getMoviesList() {
@@ -194,6 +202,10 @@ public class ContainerFragment extends Fragment implements CardListener {
         containerBinding.shimmer5.startShimmer();
         containerBinding.getBools().rc5.set(true);
         viewModel.getTrendingMovies("week", 1).observe(getViewLifecycleOwner(), responses -> {
+            if (responses == null) {
+                Log.d(TAG, "getMoviesList: null response");
+                return;
+            }
             adapter1.setShows(responses.getShows());
             last[0] = responses.getTotalPage();
             containerBinding.trendingRecyclerContainerFragment.setVisibility(View.VISIBLE);
@@ -202,6 +214,10 @@ public class ContainerFragment extends Fragment implements CardListener {
         });
 
         viewModel.getTopRatedMovies(1).observe(getViewLifecycleOwner(), responses -> {
+            if (responses == null) {
+                Log.d(TAG, "getMoviesList: null response on top rated movies");
+                return;
+            }
             adapter2.setShows(responses.getShows());
             last[1] = responses.getTotalPage();
             containerBinding.shimmer2.stopShimmer();

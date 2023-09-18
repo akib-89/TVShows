@@ -29,12 +29,15 @@ public class MovieListRepositories {
     public LiveData<? extends ShowListResponses> getPopularMovies(int page){
         MutableLiveData<MovieListResponse> data = new MutableLiveData<>();
 
-        service.makeCallToAPIGetPopularMovies(Credentials.API_KEY,page).enqueue(new Callback<MovieListResponse>() {
+        String bearer = "Bearer " + Credentials.API_KEY;
+        service.makeCallToAPIGetPopularMovies(bearer,page).enqueue(new Callback<MovieListResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieListResponse> call, @NonNull Response<MovieListResponse> response) {
                 if (response.code()==200){
+                    Log.d(TAG, "onResponse: getting response");
                     data.setValue(response.body());
                 }else {
+                    Log.d(TAG, "onResponse: code= " + response.code() + " message= " + response.message());
                     data.setValue(null);
                 }
             }
@@ -50,14 +53,17 @@ public class MovieListRepositories {
     public LiveData<? extends ShowListResponses> getTopRatedMovies(int page){
         MutableLiveData<MovieListResponse> data = new MutableLiveData<>();
 
+        String bearer = "Bearer " + Credentials.API_KEY;
         service.makeCallToAPIGetTopRatedMovies(
-                Credentials.API_KEY,
+                bearer,
                 page).enqueue(new Callback<MovieListResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieListResponse> call, @NonNull Response<MovieListResponse> response) {
                 if (response.code()==200){
+                    Log.d(TAG, "onResponse: response = " + response.body().toString());
                     data.setValue(response.body());
                 }else {
+                    Log.d(TAG, "onResponse: code= " + response.code() + " message= " + response.body());
                     data.setValue(null);
                 }
             }
@@ -74,8 +80,9 @@ public class MovieListRepositories {
     public LiveData<ShowListResponses> getUpcomingMovies(int page){
         MutableLiveData<ShowListResponses> data = new MutableLiveData<>();
 
+        String bearer = "Bearer " + Credentials.API_KEY;
         service.makeCallToAPIGetUpcomingMovies(
-                Credentials.API_KEY,
+                bearer,
                 page).enqueue(new Callback<MovieListResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieListResponse> call, @NonNull Response<MovieListResponse> response) {
@@ -97,9 +104,9 @@ public class MovieListRepositories {
 
     public LiveData<ShowListResponses> getNowPlayingMovieList(int page){
         MutableLiveData<ShowListResponses> data = new MutableLiveData<>();
-
+        String bearer = "Bearer " + Credentials.API_KEY;
         service.makeCallToAPIGetNowPlayingMovies(
-                Credentials.API_KEY,
+                bearer,
                 page).enqueue(new Callback<MovieListResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieListResponse> call, @NonNull Response<MovieListResponse> response) {
@@ -121,11 +128,14 @@ public class MovieListRepositories {
 
     public LiveData<ShowListResponses> getTrending(String time, int page){
         MutableLiveData<ShowListResponses> data = new MutableLiveData<>();
+        Log.d(TAG, "getTrending: called");
+
+        String bearer = "Bearer " + Credentials.API_KEY;
 
         service.makeCallToAPIGetTrending(
                 "movie",
                 time,
-                Credentials.API_KEY,
+                bearer,
                 page).enqueue(new Callback<TrendingResponse>() {
             @Override
             public void onResponse(@NonNull Call<TrendingResponse> call, @NonNull Response<TrendingResponse> response) {
@@ -147,7 +157,9 @@ public class MovieListRepositories {
     public LiveData<Movie> getMovieDetails(String movieId){
         MutableLiveData<Movie> data =  new MutableLiveData<>();
 
-        service.callToAPIGetMovieDetails(movieId,Credentials.API_KEY, "videos,images,credits").enqueue(new Callback<Movie>() {
+        String bearer = "Bearer " + Credentials.API_KEY;
+
+        service.callToAPIGetMovieDetails(movieId,bearer, "videos,images,credits").enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(@NonNull Call<Movie> call, @NonNull Response<Movie> response) {
                 if (response.body() !=null) {

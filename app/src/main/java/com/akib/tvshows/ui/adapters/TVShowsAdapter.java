@@ -21,7 +21,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
 
     private final ArrayList<Shows> shows = new ArrayList<>();
     private LayoutInflater inflater;
-    private CardListener cardListener;
+    private final CardListener cardListener;
 
     public TVShowsAdapter(CardListener cardListener) {
         this.cardListener = cardListener;
